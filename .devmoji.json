@@ -1,0 +1,15 @@
+{
+    "map": {
+        "feat": ":sparkles:",
+        "fix": ":bug:",
+        "docs": ":memo:",
+        "style": ":art:",
+        "refactor": ":recycle:",
+        "perf": ":zap:",
+        "test": ":white_check_mark:",
+        "build": ":construction_worker:",
+        "ci": ":green_heart:",
+        "chore": ":wrench:",
+        "revert": ":rewind:"
+    }
+}
