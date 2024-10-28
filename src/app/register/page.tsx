@@ -3,8 +3,8 @@
 import React from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { FaCheckCircle } from 'react-icons/fa';
-import { AiOutlineWarning } from 'react-icons/ai';
+import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 import { useRouter } from 'next/navigation';
 import { useRegisterFormStore } from '../../hooks/useregStore'; // Import your Zustand store
 
@@ -15,16 +15,12 @@ const RegisterForm = () => {
     phoneNumber,
     password,
     consent,
-    successMessage,
-    errorMessage,
+    resetForm,
     setName,
     setEmail,
     setPhoneNumber,
     setPassword,
     setConsent,
-    setSuccessMessage,
-    setErrorMessage,
-    resetForm,
   } = useRegisterFormStore(); // Access Zustand state and actions
 
   const router = useRouter();
@@ -44,8 +40,7 @@ const RegisterForm = () => {
       return response.data;
     },
     onSuccess: () => {
-      setSuccessMessage('Registration successful! Redirecting to login...');
-      setErrorMessage('');
+      toast.success('Registration successful! Redirecting to login...'); // Success toast
       resetForm(); // Reset the form using Zustand store
 
       setTimeout(() => {
@@ -53,8 +48,7 @@ const RegisterForm = () => {
       }, 2000);
     },
     onError: () => {
-      setErrorMessage('Registration failed. Please try again.');
-      setSuccessMessage('');
+      toast.error('Registration failed. Please try again.'); // Error toast
     },
   });
 
@@ -123,17 +117,7 @@ const RegisterForm = () => {
         </button>
       </form>
 
-      {successMessage && (
-        <p className="mt-4 text-green-600 text-center flex items-center justify-center">
-          <FaCheckCircle className="mr-2" /> {successMessage}
-        </p>
-      )}
-
-      {errorMessage && (
-        <p className="mt-4 text-red-600 text-center flex items-center justify-center">
-          <AiOutlineWarning className="mr-2" /> {errorMessage}
-        </p>
-      )}
+      <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} closeOnClick pauseOnHover draggable /> {/* ToastContainer */}
     </div>
   );
 };

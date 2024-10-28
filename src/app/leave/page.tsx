@@ -4,6 +4,8 @@ import React from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import useLeaveStore from "../../hooks/leaveStore"; // Import the Zustand store
+import { ToastContainer, toast } from "react-toastify"; // Import toast notifications
+import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
 // Define the payload type for the leave request
 interface LeaveRequestPayload {
@@ -42,10 +44,12 @@ const LeaveForm = () => {
     mutationFn: submitLeaveRequest,
     onSuccess: (data) => {
       console.log("Leave request submitted:", data);
+      toast.success("Leave request submitted successfully!"); // Notify success
       resetForm(); // Reset form after successful submission
     },
     onError: (error: Error) => {
       console.error("Error submitting leave request:", error);
+      toast.error("Error submitting leave request."); // Notify error
     },
   });
 
@@ -158,6 +162,7 @@ const LeaveForm = () => {
           </button>
         </div>
       </form>
+      <ToastContainer /> {/* Add the ToastContainer for notifications */}
     </div>
   );
 };

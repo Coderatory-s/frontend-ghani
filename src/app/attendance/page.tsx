@@ -1,6 +1,8 @@
+// src/app/attendance/page.tsx
 "use client"; // Mark the component as client-side
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Use the correct import for Next.js
 import useStore from '../../hooks/useStore'; // Custom store hook
 import { useMutation } from '@tanstack/react-query'; // Import useMutation from TanStack Query
 import axios from 'axios'; // API requests
@@ -11,6 +13,7 @@ import { Input } from '@/components/ui/input'; // Input component
 import { Alert } from '@/components/ui/alert'; // Alert component
 
 const AttendanceForm = () => {
+  const router = useRouter(); // Initialize router for navigation
   const setCheckIn = useStore((state) => state.setCheckIn); // Store check-in state
   const setCheckOut = useStore((state) => state.setCheckOut); // Store check-out state
   const [userId, setUserId] = useState(''); // User ID input state
@@ -29,6 +32,7 @@ const AttendanceForm = () => {
       setCheckIn(new Date().toISOString());
       setMessage('Check-in successful!');
       setLoadingCheckIn(false); // Stop loading on success
+      router.push('/report'); // Redirect to report page
     },
     onError: () => {
       setError('Check-in failed. Try again.');
@@ -46,6 +50,7 @@ const AttendanceForm = () => {
       setCheckOut(new Date().toISOString());
       setMessage('Check-out successful!');
       setLoadingCheckOut(false); // Stop loading on success
+      router.push('/report'); // Redirect to report page
     },
     onError: () => {
       setError('Check-out failed. Try again.');

@@ -15,7 +15,7 @@ const LoginForm = () => {
   // Define the API call function for login
   const login = async () => {
     const payload = { email, password }; // Create payload from Zustand store
-    const response = await axios.post('http://localhost:3000/v1/authen/login', payload);
+    const response = await axios.post('http://localhost:3000/v1/login', payload);
     return response.data; // Return the response data
   };
 

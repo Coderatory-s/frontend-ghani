@@ -104,6 +104,7 @@ const HomePage = () => {
           <Link href="/teams">
             <Button variant="default" className="w-full">Teams</Button>
           </Link>
+          
         </div>
 
         {/* Introduction Section */}

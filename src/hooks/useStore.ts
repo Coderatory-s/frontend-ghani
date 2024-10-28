@@ -7,6 +7,8 @@ type AttendanceState = {
 };
 
 type StoreState = {
+  checkOut: any;
+  checkIn: any;
   attendance: AttendanceState;
   setCheckIn: (time: string) => void;
   setCheckOut: (time: string) => void;
